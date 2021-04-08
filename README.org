@@ -1,0 +1,54 @@
+* Reddit Save Management
+Trying to create website to manage the saved reddit post. 
+The post is saved in mongodb with category for proper management of the post.
+
+** Plans
+- display based on category 
+- drag and drop ui to change the post category and reflect it database
+
+** Usage
+
+*** Configuring Praw (Reddit python interface) 
+
+Praw is a library that interfaces with the Reddit API for you. It limits how many requests you can make, and makes it easy to extract the json responses.
+
+You need to do a bit of setup first though in order for the bot to be able to post to Reddit.
+
+Go to: https://www.reddit.com/prefs/apps/
+
+And select Create App
+
+Give it a name. You have to choose a redirect uri (for some stupid reason, stupid because I'm building a bot, not a webapp, but whatever). I chose http://127.0.0.1
+
+You will now get a client_id (red box below) and secret (blue box below). Note it down, but keep it secret.
+
+[[./app/praw_guide.jpg]]
+
+[[https://www.pythonforengineers.com/build-a-reddit-bot-part-1/][credit]]
+
+Now, you need to update your praw ini file to remember these settings. Otherwise, you’ll have to put them in your script and thats dangerous (as others might see them).
+
+This page describes how to change praw.ini files: https://praw.readthedocs.io/en/v4.0.0/getting_started/configuration/prawini.html
+
+**** Example `praw.ini`
+```
+[mysavebot]
+client_id: <client_id> 
+client_secret: <clien_secret> 
+password: <password> 
+username: <username> 
+```
+
+
+
+*** How to run 
+  - clone this repo
+  - cd in the directory with `docker-compose.yml`
+- docker-compose up --build -d
+  - `http://0.0.0.0:8081/db/redditsave/` contains all your saved posts and comments in database
+  - To stop the docker images
+    - docker-compose down
+
+** Backend
+
+** Frontend

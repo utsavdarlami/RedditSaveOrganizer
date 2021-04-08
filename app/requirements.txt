@@ -1,0 +1,4 @@
+flask
+praw
+flask-cors
+pymongo
