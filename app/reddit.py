@@ -1,21 +1,9 @@
 import praw
-
 from praw.models.reddit.submission import Submission
 from praw.models.reddit.comment import Comment
-from pymongo import MongoClient
+from db import mongo_connect
 
 LIMIT = None  # LIMIT in the posts to fetch from the api
-
-
-def mongo_connect():
-    port = "27017"
-    MONGO_USERNAME = "admin"
-    MONGO_PASSWORD = "admin"
-    MONGO_HOSTNAME = "mongo"
-    mongo_link = f'mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOSTNAME}:{port}/'
-    # mongo_link = f'mongodb://{host_name}:{port}/'
-    # print(mongo_link)
-    return MongoClient(mongo_link)
 
 
 def fetchAllSave():
