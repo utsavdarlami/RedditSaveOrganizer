@@ -27,7 +27,8 @@ CORS(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return "Hello from flask"
+    # return render_template("index.html")
 
 
 @app.route("/fetch")
@@ -54,7 +55,7 @@ def allSave():
 def search(subreddit):
 
     global save_collection
-    regex_exp = re.compile(rf"/{subreddit}/i")
+    # regex_exp = re.compile(rf"/{subreddit}/i")
 
     # post={}
     # with open("mysaves.json", "r") as read_file:
@@ -67,11 +68,12 @@ def search(subreddit):
         # getting collection from mongodb
 
     # posts_cursor = save_collection.find({'subreddit': regex_exp})
-    print(regex_exp)
+    # print(regex_exp)
 
-    posts_cursor = save_collection.find({'subreddit': {'$regex': f'/{subreddit}/i'}})
+    posts_cursor = save_collection.find({ "subreddit": { "$regex": subreddit, "$options" :'i' } })
 
-    print(posts_cursor)
+
+    # print(posts_cursor)
 
     posts_list = list(posts_cursor)
     # json_data = dumps(post_list)

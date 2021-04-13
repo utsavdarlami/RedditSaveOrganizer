@@ -30,25 +30,28 @@ Now, you need to update your praw ini file to remember these settings. Otherwise
 
 This page describes how to change praw.ini files: https://praw.readthedocs.io/en/v4.0.0/getting_started/configuration/prawini.html
 
-**** Example `praw.ini`
-```
+**** Example ~praw.ini~
+
+#+begin_src  
 [mysavebot]
 client_id: <client_id> 
 client_secret: <clien_secret> 
 password: <password> 
 username: <username> 
-```
+#+end_src
 
 
 
 *** How to run 
   - clone this repo
-  - cd in the directory with `docker-compose.yml`
+  - cd in the directory with ~docker-compose.yml~
 - docker-compose up --build -d
-  - `http://0.0.0.0:8081/db/redditsave/` contains all your saved posts and comments in database
+  - ~http://0.0.0.0:8081/db/redditsave/~ contains all your saved posts and comments in database
   - To stop the docker images
     - docker-compose down
 
 ** Backend
+- 
 
 ** Frontend
+- https://www.bacancytechnology.com/blog/dockerize-react-app
