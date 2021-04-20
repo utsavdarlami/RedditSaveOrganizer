@@ -8,17 +8,17 @@ WORKDIR /front
 ENV PATH /front/node_modules/.bin:$PATH
 
 # install application dependencies
-COPY package.json /front/
-COPY package-lock.json /front/
+COPY package.json ./
+COPY package-lock.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps 
 
 # add front 
-COPY . /front/
+COPY . ./
 
-# RUN npm run build
-# RUN npm install -g serve
+#RUN npm run build
+#RUN npm install -g serve
 
 # start front 
 CMD ["npm", "start"]
-# CMD ["serve", "-p", "3000", "-s", "./build"]
+#CMD ["serve", "-p", "3000", "-s", "./build"]

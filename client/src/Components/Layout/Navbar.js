@@ -1,5 +1,7 @@
 import React from 'react';
 import Search from './Search';
+import Fetch from './Fetch';
+
 const Navbar=(props)=>{
     // console.log(props.searchSaves)
 
@@ -13,7 +15,7 @@ const Navbar=(props)=>{
 	    <div className="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul className="navbar-nav mr-auto">
 		    <li className="nav-item">
-			<button className="btn btn-info">Fetch</button>
+                <Fetch fetchSaves = {props.fetchSaves}/>
 		    </li>
 		</ul>
 		<Search searchSaves = {props.searchSaves} />
