@@ -6,7 +6,7 @@ services:
    ports:
      - 5007:5000
    environment:
-     - DEBUG=0
+     - DEBUG=1
    networks:
       - reddit_save_network
 
@@ -14,13 +14,24 @@ services:
    build: client
    restart : always
    ports:
-     - 3002:3000
+     - 3002:80
    environment:
      - CHOKIDAR_USEPOLLING=true
    networks:
      - reddit_save_network
    depends_on:
      - app 
+
+  proxy:
+    build: proxy
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - reddit_save_network 
+    depends_on:
+      - app
+      - client
 
   mongo:
     image: mongo

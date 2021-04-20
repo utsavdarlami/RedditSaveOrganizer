@@ -1,7 +1,7 @@
 import React ,{Component} from 'react'
 import './App.css'
-import Navbar from './Components/Layout/Navbar';
 
+import Navbar from './Components/Layout/Navbar';
 import Saves from './Components/Saves/Saves';
 
 import axios from 'axios';

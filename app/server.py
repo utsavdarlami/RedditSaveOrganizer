@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template
+import os
 import re
 from db import mongo_connect
 from reddit import fetchAllSave
@@ -86,4 +87,9 @@ def search(subreddit):
         return jsonify(posts_list)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # app.run(host="0.0.0.0", port=5000, debug=True)
+
+    app.run(host='0.0.0.0',
+            port=5000,
+            debug=os.environ.get('DEBUG') == '1')
+

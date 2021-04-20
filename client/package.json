@@ -1,7 +1,8 @@
 {
     "name": "redditsave_client",
     "version": "0.1.0",
-    "proxy":"http://app:5000",
+    "proxy":"http://localhost/app",
+    "homepage": ".",
     "private": true,
     "dependencies": {
         "react": ">16.9.0",
