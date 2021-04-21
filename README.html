@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-04-21 Wed 11:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="felladog" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge44ca2e">1. Reddit Save Management</a>
+<ul>
+<li><a href="#org6323665">1.1. Current Feature:</a></li>
+<li><a href="#orgec50ebc">1.2. Plans</a></li>
+<li><a href="#orgd876f97">1.3. Usage</a>
+<ul>
+<li><a href="#org09693fd">1.3.1. Configuring Praw (Reddit python interface)</a></li>
+<li><a href="#orga032d4f">1.3.2. How to run</a></li>
+</ul>
+</li>
+<li><a href="#org43f4d67">1.4. Backend</a></li>
+<li><a href="#orga3bfc8c">1.5. Frontend</a></li>
+<li><a href="#orgef21f5f">1.6. Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge44ca2e" class="outline-2">
+<h2 id="orge44ca2e"><span class="section-number-2">1</span> Reddit Save Management</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Trying to create website to organize the saved reddit post. 
+</p>
+
+<p>
+The post is saved in mongodb with category for proper management of the post.
+</p>
+</div>
+<div id="outline-container-org6323665" class="outline-3">
+<h3 id="org6323665"><span class="section-number-3">1.1</span> Current Feature:</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Search through your saved post</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgec50ebc" class="outline-3">
+<h3 id="orgec50ebc"><span class="section-number-3">1.2</span> Plans</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>display based on category</li>
+<li>drag and drop UI to change the post category and reflect on database</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd876f97" class="outline-3">
+<h3 id="orgd876f97"><span class="section-number-3">1.3</span> Usage</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org09693fd" class="outline-4">
+<h4 id="org09693fd"><span class="section-number-4">1.3.1</span> Configuring Praw (Reddit python interface)</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<pre class="example">
+
+Praw is a library that interfaces with the Reddit API for you. It limits how many requests you can make, and makes it easy to extract the json responses.
+
+You need to do a bit of setup first though in order for the bot to be able to post to Reddit.
+
+Go to: https://www.reddit.com/prefs/apps/
+
+And select Create App
+
+Give it a name. You have to choose a redirect uri (for some stupid reason, stupid because I'm building a bot, not a webapp, but whatever). I chose http://127.0.0.1
+
+You will now get a client_id (red box below) and secret (blue box below). Note it down, but keep it secret.
+
+Now, you need to update your praw ini file to remember these settings. Otherwise, you’ll have to put them in your script and thats dangerous (as others might see them).
+
+This page describes how to change praw.ini files: https://praw.readthedocs.io/en/v4.0.0/getting_started/configuration/prawini.html
+
+</pre>
+
+
+<div id="org847e7fa" class="figure">
+<p><img src="./app/praw_guide.jpg" alt="praw_guide.jpg" />
+</p>
+</div>
+</div>
+
+<ol class="org-ol">
+<li><a id="org06b80e2"></a>Example <code>praw.ini</code> file (inside /app)<br />
+<div class="outline-text-5" id="text-1-3-1-1">
+<pre class="example">
+[mysavebot]
+client_id: &lt;client_id&gt; 
+client_secret: &lt;clien_secret&gt; 
+password: &lt;password&gt; 
+username: &lt;username&gt; 
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+
+<div id="outline-container-orga032d4f" class="outline-4">
+<h4 id="orga032d4f"><span class="section-number-4">1.3.2</span> How to run</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ul class="org-ul">
+<li>clone this repo</li>
+<li>configure the praw.ini file and place it inside <b>/app</b> directory</li>
+<li>cd in the directory with <code>docker-compose.yml</code></li>
+</ul>
+<ul class="org-ul">
+<li>docker-compose up &#x2013;build -d
+<ul class="org-ul">
+<li><a href="http://localhost">http://localhost</a> to view the site</li>
+<li><code>http://0.0.0.0:8081/db/redditsave/</code> mongo express url to view all your saved posts and comments.</li>
+<li>To stop the docker images
+<ul class="org-ul">
+<li>docker-compose down</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org43f4d67" class="outline-3">
+<h3 id="org43f4d67"><span class="section-number-3">1.4</span> Backend</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>flask app</li>
+<li>mongodb for database</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga3bfc8c" class="outline-3">
+<h3 id="orga3bfc8c"><span class="section-number-3">1.5</span> Frontend</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>react</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgef21f5f" class="outline-3">
+<h3 id="orgef21f5f"><span class="section-number-3">1.6</span> Acknowledgements</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li><a href="https://typeofnan.dev/how-to-serve-a-react-app-with-nginx-in-docker/">https://typeofnan.dev/how-to-serve-a-react-app-with-nginx-in-docker/</a></li>
+<li><a href="https://www.bacancytechnology.com/blog/dockerize-react-app">https://www.bacancytechnology.com/blog/dockerize-react-app</a></li>
+<li><a href="https://github.com/productive-dev/minimal-reverse-proxy-demo">https://github.com/productive-dev/minimal-reverse-proxy-demo</a></li>
+<li><a href="https://www.pythonforengineers.com/build-a-reddit-bot-part-1/">https://www.pythonforengineers.com/build-a-reddit-bot-part-1/</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: felladog</p>
+<p class="date">Created: 2021-04-21 Wed 11:04</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
