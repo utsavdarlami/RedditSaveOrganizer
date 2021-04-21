@@ -18,9 +18,9 @@ const alertOptions = {
 }
 
 // const api = "http://app:5000"
-// const api = "http://localhost:5000"
-// const api = "app"
-const api = ""
+//const api = "http://localhost/app"
+const api = "/app"
+//const api = ""
 
 class App extends Component {
 
@@ -38,7 +38,7 @@ class App extends Component {
   async componentDidMount(){
     this.setState({loading:true})
     const res = await axios.get(`${api}/allsaves`);
-    //console.log(this.props)
+    //console.log(res)
     this.setState({loading:false,saves:res.data})
 
   };
@@ -54,7 +54,7 @@ class App extends Component {
   fetchSaves = async () => {
     this.setState({loading:true})
     const res = await axios.get(`${api}/fetch`);
-    console.log(res.data)
+    //console.log(res.data)
     this.setState({loading:false})
     //this.props.alert.show('Oh look, an alert!')
     //this.setState({saves:res.data})
