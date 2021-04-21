@@ -45,7 +45,7 @@ username: <username>
 - cd in the directory with ~docker-compose.yml~
 
 - Run ~$ docker-compose up --build -d~
-  - http://localhost/ to view the site 
+  - ~http://localhost/~ to view the site 
   - ~http://0.0.0.0:8081/db/redditsave/~ mongo express url to view all your saved posts and comments in mongodb.
 
 - To stop the docker images
