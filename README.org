@@ -1,6 +1,6 @@
 * Reddit Save Management
 
-Trying to create website to organize the saved reddit post. 
+Trying to create web-app to organize the saved reddit post. 
 
 ** Current Feature:
 - Search through your saved post
@@ -11,21 +11,20 @@ Trying to create website to organize the saved reddit post.
 
 ** Usage
 *** Configuring Praw (Reddit python interface) 
-#+begin_src
-Praw is a library that interfaces with the Reddit API for you. It limits how many requests you can make, and makes it easy to extract the json responses.
 
-You need to do a bit of setup first though in order for the bot to be able to post to Reddit.
+/Praw is a library that interfaces with the Reddit API for you. It limits how many requests you can make, and makes it easy to extract the json responses./
 
-Go to: https://www.reddit.com/prefs/apps/ And select Create App
+/You need to do a bit of setup first though in order for the bot to be able to post to Reddit./
 
-Give it a name. You have to choose a redirect uri (for some stupid reason, stupid because I'm building a bot, not a webapp, but whatever). I chose http://127.0.0.1
+/Go to: https://www.reddit.com/prefs/apps And select Create App/
 
-You will now get a client_id (red box below) and secret (blue box below). Note it down, but keep it secret.
+/Give it a name. You have to choose a redirect uri (for some stupid reason, stupid because I'm building a bot, not a webapp, but whatever). I chose http://127.0.0.1/
 
-Now, you need to update your praw ini file to remember these settings. Otherwise, you’ll have to put them in your script and thats dangerous (as others might see them).
+/You /will now get a client_id (red box below) and secret (blue box below). Note it down, but keep it secret.//
 
-This page describes how to change praw.ini files: https://praw.readthedocs.io/en/v4.0.0/getting_started/configuration/prawini.html
-#+end_src
+/Now, you need to update your praw ini file to remember these settings. Otherwise, you’ll have to put them in your script and thats dangerous (as others might see them)./
+
+/This page describes how to change praw.ini files: https://praw.readthedocs.io/en/v4.0.0/getting_started/configuration/prawini.html/
 
 [[./app/praw_guide.jpg]]
 
