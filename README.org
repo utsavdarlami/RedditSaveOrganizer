@@ -46,6 +46,7 @@ username: <username>
 
 - Run ~$ docker-compose up --build -d~
   - ~http://localhost/~ to view the site 
+  - click *Fetch* button to fetch all your reddit saves and update the database
   - ~http://0.0.0.0:8081/db/redditsave/~ mongo express url to view all your saved posts and comments in mongodb.
 
 - To stop the docker images
