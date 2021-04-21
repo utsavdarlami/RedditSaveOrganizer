@@ -1,4 +1,4 @@
-* Reddit Save Management
+* Reddit Save Organizer
 
 Trying to create web-app to organize the saved reddit post. 
 
