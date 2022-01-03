@@ -29,7 +29,6 @@ CORS(app)
 @app.route("/")
 def index():
     return "Hello from flask"
-    # return render_template("index.html")
 
 
 @app.route("/fetch")
@@ -43,42 +42,17 @@ def allSave():
 
     global save_collection
     allsaves_cursor = save_collection.find()
-    # with open("mysaves.json", "r") as read_file:
-        # allsaves = json.load(read_file)
     allsaves_list = list(allsaves_cursor)
-    # print(allsaves_list[0:2])
-    # print(len(allsaves_list))
-    # json_data = loads(dumps(allsaves_list))
-    # return jsonify(json_data)
     return jsonify(allsaves_list)
 
 @app.route("/search/<subreddit>")
 def search(subreddit):
 
     global save_collection
-    # regex_exp = re.compile(rf"/{subreddit}/i")
-
-    # post={}
-    # with open("mysaves.json", "r") as read_file:
-        # allsaves = json.load(read_file)
-    # for save in allsaves:
-        # sub=allsaves[save]['subreddit']
-        # if subreddit.lower() in sub.lower():
-            # post[save]=allsaves[save]
-
-        # getting collection from mongodb
-
-    # posts_cursor = save_collection.find({'subreddit': regex_exp})
-    # print(regex_exp)
 
     posts_cursor = save_collection.find({ "subreddit": { "$regex": subreddit, "$options" :'i' } })
 
-
-    # print(posts_cursor)
-
     posts_list = list(posts_cursor)
-    # json_data = dumps(post_list)
-    # print(posts_list[0])
 
     if len(posts_list)==0:
         emptySearch = {"id": 404, "msg": "Error No Such Sub."}
@@ -87,9 +61,6 @@ def search(subreddit):
         return jsonify(posts_list)
 
 if __name__ == "__main__":
-    # app.run(host="0.0.0.0", port=5000, debug=True)
-
     app.run(host='0.0.0.0',
             port=5000,
             debug=os.environ.get('DEBUG') == '1')
-
