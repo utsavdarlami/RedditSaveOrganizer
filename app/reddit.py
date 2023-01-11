@@ -2,21 +2,17 @@ import praw
 from praw.models.reddit.submission import Submission
 from praw.models.reddit.comment import Comment
 from db import mongo_connect
+import argparse
 
-LIMIT = None  # LIMIT in the posts to fetch from the api
 
-
-def fetchAllSave():
-
-    global LIMIT
-
+def fetchAllSave(limit=None):
+    """Fetch Saves from the account."""
     try:
-
         reddit = praw.Reddit('mysavebot', user_agent='Organizing my Saves')
         # print(reddit.config.username)
         my = reddit.user.me()
 
-        mysaveObj = my.saved(limit=LIMIT)
+        mysaveObj = my.saved(limit=limit)
         # j = 0
 
         # getting collection from mongodb
@@ -90,4 +86,8 @@ def fetchAllSave():
 
 
 if __name__ == "__main__":
-    fetchAllSave()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("limit", type=int, help="Number of posts to fetch", default=None)
+    args = parser.parse_args()
+    limit = args.limit # LIMIT in the posts to fetch from the api
+    fetchAllSave(limit=limit)
