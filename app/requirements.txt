@@ -1,6 +1,7 @@
 Flask==2.2.2
 Flask-Cors==3.0.10
 gunicorn==20.1.0
+loguru==0.6.0
 praw==7.6.1
 prawcore==2.3.0
 pymongo==4.3.3

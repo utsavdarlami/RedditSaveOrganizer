@@ -1,93 +1,85 @@
-import praw
-from praw.models.reddit.submission import Submission
-from praw.models.reddit.comment import Comment
-from db import mongo_connect
 import argparse
+import time
+
+import praw
+from db import mongo_connect
+from loguru import logger
+from praw.models.reddit.comment import Comment
+from praw.models.reddit.submission import Submission
 
 
-def fetchAllSave(limit=None):
+def get_single_save(save):
+    """Form single save post detail using the save obj."""
+    singlePostDetail = {}
+    singlePostDetail["id"] = save.id
+
+    titleOfPost = "None"
+    singlePostDetail["type"] = "None"
+
+    if isinstance(save, Submission):
+        titleOfPost = save.title  # The title of the submission
+        singlePostDetail["url"] = save.url
+        singlePostDetail["type"] = "Post"
+
+    if isinstance(save, Comment):
+        titleOfPost = "A Comment"
+        singlePostDetail["type"] = "Comment"
+
+    subredditInstance = save.subreddit
+    # storing in dictionary
+    singlePostDetail["title"] = titleOfPost
+    singlePostDetail["link"] = save.permalink  # A permalink for the submission
+    singlePostDetail["subreddit"] = subredditInstance.display_name
+
+    # singlePostDetail['date'] = save.created
+    # nsfw post
+    singlePostDetail["nsfw"] = save.over_18
+    # adding category for later
+    singlePostDetail["category"] = "uncategorized"
+
+    return singlePostDetail
+
+
+def fetchAllSave(limit=None, mongo_hostname="mongo"):
     """Fetch Saves from the account."""
     try:
-        reddit = praw.Reddit('mysavebot', user_agent='Organizing my Saves')
-        # print(reddit.config.username)
+        reddit = praw.Reddit("mysavebot", user_agent="Organizing my Saves")
         my = reddit.user.me()
 
+        start_time = time.time()
         mysaveObj = my.saved(limit=limit)
-        # j = 0
+        checkpoint_time = time.time()
+        logger.info(f"Time to fetch saves is {checkpoint_time - start_time} sec")
 
         # getting collection from mongodb
-        conn = mongo_connect()
+        conn = mongo_connect(mongo_hostname)
         redditsave_db = conn["redditsave"]
         save_collection = redditsave_db["all_saves"]
 
-        # allSaves = {}
+        start_time = time.time()
+        try:
+            cleaned_saves = (get_single_save(save) for save in mysaveObj)
+            save_collection.insert_many(cleaned_saves)
 
-        for id, save in enumerate(mysaveObj):
+        except Exception as ecom:
+            logger.info(ecom)
+            pass
 
-            singlePostDetail = {}
-
-            try:
-                # print(dir(save))
-                singlePostDetail['id'] = save.id
-                # if post
-                if isinstance(save, Submission):
-                    titleOfPost = save.title    # The title of the submission
-                    singlePostDetail['url'] = save.url
-                    singlePostDetail['type'] = "Post"
-                # if comment
-                elif isinstance(save, Comment):
-                    titleOfPost = "A Comment"
-                    singlePostDetail['type'] = "Comment"
-                else:
-                    titleOfPost = "None"
-                    singlePostDetail['type'] = "None"
-                # print(save.comment_type)
-
-                linkOfPost = save.permalink    # A permalink for the submission
-                # Provides an instance of Subreddit
-                subredditInstance = save.subreddit
-                # Name of the subreddit
-                subredditOfPost = subredditInstance.display_name
-                # storing in dictionary
-                singlePostDetail['title'] = titleOfPost
-                # singlePostDetail['content']=OfPost
-                singlePostDetail['link'] = linkOfPost
-                singlePostDetail['subreddit'] = subredditOfPost
-
-                # singlePostDetail['date'] = save.created
-                # nsfw post
-                if save.over_18:
-                    singlePostDetail['nsfw'] = True
-                else:
-                    singlePostDetail['nsfw'] = False
-
-                # adding category for later
-                singlePostDetail['category'] = "uncategorized"
-
-                query = {'id': singlePostDetail['id']}
-
-                save_collection.update_one(query,
-                                           {"$set": singlePostDetail},
-                                           upsert=True)
-
-                # allSaves[id] = singlePostDetail
-
-            except Exception as ecom:
-                print(ecom)
-                pass
-                # break
-
-        return("success")
+        end_time = time.time()
+        logger.info(f"Time to write to db is {end_time - start_time} sec")
+        return "success"
 
     except Exception as e:
 
         print(e)
-        return('failure')
+        return "failure"
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("limit", type=int, help="Number of posts to fetch", default=None)
+    parser.add_argument(
+        "limit", type=int, default=None, help="Number of posts to fetch"
+    )
     args = parser.parse_args()
-    limit = args.limit # LIMIT in the posts to fetch from the api
-    fetchAllSave(limit=limit)
+    limit = args.limit  # LIMIT in the posts to fetch from the api
+    fetchAllSave(limit=limit, mongo_hostname="localhost")
