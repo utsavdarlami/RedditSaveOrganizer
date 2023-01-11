@@ -20,7 +20,7 @@ services:
    networks:
      - reddit_save_network
    depends_on:
-     - app 
+     - app
 
   proxy:
     build: proxy
@@ -28,7 +28,7 @@ services:
     ports:
       - 80:80
     networks:
-      - reddit_save_network 
+      - reddit_save_network
     depends_on:
       - app
       - client
@@ -37,10 +37,10 @@ services:
     image: mongo
     restart: always
     ports:
-      - 27018:27017
+      - 27017:27017
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin 
-      - MONGO_INITDB_ROOT_PASSWORD=admin 
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
     networks:
       - reddit_save_network
     volumes:
@@ -54,7 +54,7 @@ services:
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongo
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin 
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=admin
     volumes:
       - mongo_data:/data/db
