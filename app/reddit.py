@@ -54,20 +54,23 @@ def fetchAllSave(limit=None, mongo_hostname="mongo"):
         # getting collection from mongodb
         conn = mongo_connect(mongo_hostname)
         redditsave_db = conn["redditsave"]
-        save_collection = redditsave_db["all_saves"]
-
-        start_time = time.time()
+        collection_name = "all_saves"
         try:
-            cleaned_saves = (get_single_save(save) for save in mysaveObj)
-            save_collection.insert_many(cleaned_saves)
-
+            redditsave_db.drop_collection(collection_name)
         except Exception as ecom:
             logger.info(ecom)
-            pass
+        save_collection = redditsave_db[collection_name]
 
+        start_time = time.time()
+        for save in mysaveObj:
+            cleaned_save = get_single_save(save)
+            try:
+                save_collection.insert_one(cleaned_save)
+            except Exception as ecom:
+                logger.info(ecom)
+                pass
         end_time = time.time()
         logger.info(f"Time to write to db is {end_time - start_time} sec")
-        return "success"
 
     except Exception as e:
 

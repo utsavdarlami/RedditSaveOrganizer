@@ -6,4 +6,5 @@ COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY . /code/
 #CMD python server.py
-CMD gunicorn --bind 0.0.0.0:5000 -w 3 server:app
+# CMD gunicorn --bind 0.0.0.0:5000 -w 4 async_server:app
+CMD gunicorn --bind 0.0.0.0:5000 -w 4 server:app

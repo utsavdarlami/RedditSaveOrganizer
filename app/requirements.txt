@@ -1,7 +1,9 @@
-Flask==2.2.2
+asyncpraw==7.6.1
 Flask-Cors==3.0.10
+Flask[async]==2.2.2
 gunicorn==20.1.0
 loguru==0.6.0
+motor==3.1.1
 praw==7.6.1
 prawcore==2.3.0
 pymongo==4.3.3
