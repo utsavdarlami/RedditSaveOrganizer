@@ -26,7 +26,7 @@ services:
     build: proxy
     restart: always
     ports:
-      - 80:80
+      - 8000:80
     networks:
       - reddit_save_network
     depends_on:
