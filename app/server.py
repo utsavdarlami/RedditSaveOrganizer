@@ -6,6 +6,7 @@ from bson.json_util import ObjectId
 from db import mongo_connect
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
+from loguru import logger
 from reddit import fetchAllSave
 
 
@@ -20,7 +21,14 @@ class MyEncoder(json.JSONEncoder):
         return super(MyEncoder, self).default(obj)
 
 
-conn = mongo_connect()
+is_local = os.environ.get("TESTING", True)
+logger.info(f"App Running locally ? {is_local}")
+if is_local:
+    mongo_hostname = "localhost"
+else:
+    mongo_hostname = "mongo"
+
+conn = mongo_connect(mongo_hostname=mongo_hostname)
 redditsave_db = conn["redditsave"]
 save_collection = redditsave_db["all_saves"]
 
@@ -37,7 +45,7 @@ def index():
 
 @app.route("/fetch")
 def runFetch():
-    responseOfFetching = fetchAllSave()
+    responseOfFetching = fetchAllSave(mongo_hostname=mongo_hostname)
     return jsonify(responseOfFetching)
 
 

@@ -1,5 +1,6 @@
 FROM python:3.10.9
 ENV PYTHONBUFFERED 1
+ENV TESTING False
 # RUN mkdir /code
 WORKDIR /code
 COPY requirements.txt /code/
