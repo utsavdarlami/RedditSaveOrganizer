@@ -67,6 +67,10 @@ localhost:5007/search/<search keyword>   # search through subreddit.
 
   #+END_SRC
 - mongodb for database
+  - connect to this db on mongodb compass with connection url
+    #+BEGIN_SRC
+    mongodb://admin:admin@localhost:27017/
+    #+END_SRC
 
 ** Frontend
 - react
