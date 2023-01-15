@@ -1,16 +1,16 @@
 * Reddit Save Organizer
 
-Trying to create web-app to organize the saved reddit post. 
+Trying to create web-app to organize the saved reddit post.
 
 ** Current Feature:
 - Search through your saved post
 
 ** Plans
-- Display based on category 
+- Display based on category
 - Drag and drop UI to change the post category and reflect on database
 
 ** Usage
-*** Configuring Praw (Reddit python interface) 
+*** Configuring Praw (Reddit python interface)
 
 /Praw is a library that interfaces with the Reddit API for you. It limits how many requests you can make, and makes it easy to extract the json responses./
 
@@ -30,22 +30,22 @@ Trying to create web-app to organize the saved reddit post.
 
 **** Example ~praw.ini~ file (inside /app)
 
-#+begin_src  
+#+begin_src
 [mysavebot]
-client_id: <client_id> 
-client_secret: <clien_secret> 
-password: <password> 
-username: <username> 
+client_id: <client_id>
+client_secret: <clien_secret>
+password: <password>
+username: <username>
 #+end_src
 
 *** How to run
 - Your system must have *docker* and *docker-compose* installed
 - Clone this repo
-- Configure the praw.ini file and place it inside */app* directory 
+- Configure the praw.ini file and place it inside */app* directory
 - cd in the directory with ~docker-compose.yml~
 
 - Run ~$ docker-compose up --build -d~
-  - ~http://localhost/~ to view the site 
+  - ~http://localhost/~ to view the site
   - click *Fetch* button to fetch all your reddit saves and update the database
   - ~http://0.0.0.0:8081/db/redditsave/~ mongo express url to view all your saved posts and comments in mongodb.
 
@@ -54,10 +54,22 @@ username: <username>
 
 ** Backend
 - flask app
+  #+BEGIN_SRC
+# ENDPOINTS
+
+localhost:5007/   # flask root route
+
+localhost:5007/allsaves  # get all saves from the database
+
+localhost:5007/fetch   # fetch saves from reddit and save to the database
+
+localhost:5007/search/<search keyword>   # search through subreddit.
+
+  #+END_SRC
 - mongodb for database
 
 ** Frontend
-- react 
+- react
 
 ** Acknowledgements
 - https://typeofnan.dev/how-to-serve-a-react-app-with-nginx-in-docker/
