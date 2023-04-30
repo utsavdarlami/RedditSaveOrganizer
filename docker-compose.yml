@@ -1,70 +1,44 @@
-version: '3.7'
+version: "3"
 services:
-  app:
-   build: app
-   restart: always
-   ports:
-     - 5007:5000
-   environment:
-     - DEBUG=1
-   networks:
-      - reddit_save_network
-
-  client:
-   build: client
-   restart : always
-   ports:
-     - 3002:80
-   environment:
-     - CHOKIDAR_USEPOLLING=true
-   networks:
-     - reddit_save_network
-   depends_on:
-     - app 
-
-  proxy:
-    build: proxy
-    restart: always
-    ports:
+  reverse-proxy:
+    # build:
+    #   context: ./reverse_proxy
+    #   dockerfile: Dockerfile
+    image: nginx
+    volumes: 
+      - ./reverse_proxy:/etc/nginx
+    depends_on:
+      - frontend
+      - backend
+    ports: 
       - 80:80
-    networks:
-      - reddit_save_network 
-    depends_on:
-      - app
-      - client
-
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - 27018:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin 
-      - MONGO_INITDB_ROOT_PASSWORD=admin 
-    networks:
-      - reddit_save_network
+  backend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
     volumes:
-      - mongo_data:/data/db mongo
-
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongo
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin 
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=admin
-    volumes:
-      - mongo_data:/data/db
+      - ./app:/code
     depends_on:
-      - mongo
-    networks:
-      - reddit_save_network
-
-networks:
-  reddit_save_network:
-
-volumes:
-  mongo_data:
+      - mongodb
+    ports:
+      - 5000:5000
+  frontend:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+    - ./client:/app
+    - /app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  mongodb:
+    image: mongo:3.6.23
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin123
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+    volumes:
+      - ./.mongo-db-data/:/data/db 
+      - ./mongo-entrypoint:/docker-entrypoint-initdb.d/
+    command: mongod
