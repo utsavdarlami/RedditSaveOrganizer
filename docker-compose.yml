@@ -41,4 +41,6 @@ services:
     volumes:
       - ./.mongo-db-data/:/data/db 
       - ./mongo-entrypoint:/docker-entrypoint-initdb.d/
+    ports:
+      - 27017:27017
     command: mongod
